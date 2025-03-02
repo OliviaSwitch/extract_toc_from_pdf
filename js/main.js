@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 生成Markdown格式的目录
   function generateMarkdownTOC(outline) {
-    let tocText = '# 目录\n\n';
+    let tocText = '';
     
     function processItems(items, indent = 0) {
       for (const item of items) {
