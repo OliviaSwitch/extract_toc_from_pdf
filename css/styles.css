@@ -247,3 +247,38 @@ input[type="file"] {
     max-width: 300px;
   }
 }
+
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 15px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.github-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.github-link:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.github-icon {
+  fill: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.github-link:hover .github-icon {
+  transform: scale(1.1);
+}
