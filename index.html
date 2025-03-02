@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF目录提取工具</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>PDF目录提取工具</h1>
+    <div class="upload-area" id="dropArea">
+      <input type="file" id="fileInput" accept=".pdf" />
+      <label for="fileInput" class="upload-button">选择或拖放PDF文件</label>
+      <p id="fileName" class="file-name"></p>
+    </div>
+    
+    <div class="result-container">
+      <h2>提取的目录</h2>
+      <div class="format-selector">
+        <label><input type="radio" name="format" value="plain" checked> <span>纯文本</span></label>
+        <label><input type="radio" name="format" value="markdown"> <span>Markdown</span></label>
+      </div>
+      <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+        <div class="spinner"></div>
+        <p>正在处理中...</p>
+      </div>
+      <div id="tocResult" class="toc-result"></div>
+      <div class="export-buttons" style="display: none;" id="exportButtons">
+        <button id="copyBtn" class="btn">复制到剪贴板</button>
+        <button id="downloadBtn" class="btn">下载为文本文件</button>
+        <button id="downloadMarkdownBtn" class="btn">下载为Markdown</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
