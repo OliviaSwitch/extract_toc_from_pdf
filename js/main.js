@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const downloadMarkdownBtn = document.getElementById('downloadMarkdownBtn');
   const formatRadios = document.querySelectorAll('input[name="format"]');
   const dropArea = document.getElementById('dropArea');
+  const emptyState = document.getElementById('emptyState');
 
   // 存储提取的目录数据
   let extractedOutline = null;
@@ -125,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
   async function extractOutline(pdf) {
     const outline = await pdf.getOutline();
     if (!outline || outline.length === 0) {
+      showEmptyState('未能从PDF中提取到目录，可能该PDF未包含目录结构');
       throw new Error('未在PDF中找到目录。');
     }
     return outline;
@@ -306,4 +308,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   `;
   document.head.appendChild(style);
+
+  // 显示空状态提示
+  function showEmptyState(message) {
+    if (!emptyState) {
+      emptyState = document.createElement('div');
+      emptyState.className = 'toc-empty-state';
+      emptyState.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
+        <p>${message}</p>
+      `;
+      tocResult.innerHTML = '';
+      tocResult.appendChild(emptyState);
+    } else {
+      emptyState.querySelector('p').textContent = message;
+      emptyState.style.display = 'flex';
+    }
+  }
+
+  // 初始化时显示空状态
+  showEmptyState('请上传PDF文件以提取目录内容');
 });
